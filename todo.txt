@@ -1,0 +1,24 @@
+version: '3.3'
+
+services:
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: DEP@ssw0rd
+      MYSQL_DATABASE: mediawiki
+      MYSQL_USER: wiki
+      MYSQL_PASSWORD: DEP@ssw0rd
+    volumes:
+      - dbvolume:/var/lib/mysql
+
+  wiki:
+    image: mediawiki
+    links:
+      - db
+    ports:
+      - "8080:80"
+    volumes:
+      - ~/LocalSettings.php:/var/www/html/LocalSettings.php
+
+volumes:
+  dbvolume:
