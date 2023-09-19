@@ -22,3 +22,4 @@ services:
 
 volumes:
   dbvolume:
+//docker-compose -f wiki.yml up -d
